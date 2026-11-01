@@ -18,10 +18,12 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
       await page.goto('http://127.0.0.1:8765/', { waitUntil: 'domcontentloaded' });
       await page.locator('#gamePicker').waitFor();
       assert.equal(await page.locator('#gamePicker .game-picker-item').count(), 9);
-      await page.locator('#menuToggle').click();
-      assert.equal(await page.locator('#menuToggle').getAttribute('aria-expanded'), 'true');
-      await page.keyboard.press('Escape');
-      assert.equal(await page.locator('#menuToggle').getAttribute('aria-expanded'), 'false');
+      if (width < 761) {
+        await page.locator('#menuToggle').click();
+        assert.equal(await page.locator('#menuToggle').getAttribute('aria-expanded'), 'true');
+        await page.keyboard.press('Escape');
+        assert.equal(await page.locator('#menuToggle').getAttribute('aria-expanded'), 'false');
+      }
       await page.locator('#gameSearch').fill('snake');
       assert.match(await page.locator('#gameSearchCount').innerText(), /1 of 9/);
       await page.locator('#gameSearch').fill('');
