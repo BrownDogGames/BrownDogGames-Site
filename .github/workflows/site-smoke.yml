@@ -1,0 +1,22 @@
+name: Website smoke tests
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'assets/**'
+      - 'scripts/**'
+      - '.github/workflows/site-smoke.yml'
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check website structure and JavaScript
+        run: node scripts/site-smoke.cjs
