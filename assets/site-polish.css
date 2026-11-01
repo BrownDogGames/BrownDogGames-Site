@@ -1,0 +1,59 @@
+/* BrownDogGames responsive and accessibility polish.
+   Loaded after legacy styles to avoid changing the site's structure. */
+:root{--focus-ring:#ff6575}
+html{scroll-padding-top:110px}
+body{overflow-x:hidden}
+img,video,canvas,svg{max-width:100%}
+img{height:auto}
+button,input,select,textarea{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+button:not(:disabled),a{touch-action:manipulation}
+:where(button,a,input,select,textarea,summary):focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px}
+:where(.card,.featured-game,.quickcard){transition:border-color .18s ease,box-shadow .18s ease}
+:where(.card,.featured-game,.quickcard):focus-within{border-color:#ff6575}
+:where(.card,.featured-game,.quickcard):hover{box-shadow:0 8px 24px #0004}
+:where(.hero,.featured,.card,.quickcard,.gamedialog){min-width:0}
+:where(.hero h1,.featured h2,.card h3){overflow-wrap:break-word}
+:where(.grid,.quickgrid,.featured-grid)>*{min-width:0}
+.site-links a{border-radius:8px;padding:7px 4px}
+.site-links a:focus-visible{background:#3a2026}
+.btn,.menu-toggle,.tabs button{min-height:44px}
+[hidden]{display:none!important}
+@media(max-width:760px){
+  html{scroll-padding-top:20px}
+  nav{padding:12px 16px;gap:10px}
+  .brand{font-size:clamp(17px,4vw,21px);min-width:0}
+  .brandname{white-space:normal;overflow-wrap:anywhere}
+  .site-links{gap:4px}
+  .site-links a{display:block;padding:13px 14px;min-height:44px;border-bottom:1px solid #ffffff12}
+  .site-links a:last-child{border-bottom:0}
+  main{padding:18px 14px}
+  .hero{padding:30px 20px;border-radius:18px}
+  .hero h1{font-size:clamp(29px,8vw,44px);line-height:1.12}
+  .hero p{font-size:16px;line-height:1.6}
+  .featured{padding:20px 16px}
+  .stats{gap:8px}
+  .stat{flex:1 1 130px}
+  .tabs{gap:7px}
+  .tabs button{flex:1 1 auto}
+  .card{padding:17px}
+  .gameboard{max-width:100%;grid-template-columns:repeat(3,minmax(0,75px))}
+  .gameboard button{width:100%}
+  .steamcontrols input{width:100%}
+}
+@media(max-width:480px){
+  .quickgrid,.featured-grid{grid-template-columns:1fr}
+  .quickcard{min-height:unset}
+  .featured-game img{max-height:210px}
+  .heroactions{align-items:stretch}
+  .heroactions>*{width:100%;justify-content:center;text-align:center}
+  .gamedialog{padding:16px;max-width:calc(100vw - 20px)}
+  .memoryboard{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .memoryboard button{min-width:0}
+  .scoretable{display:block;overflow-x:auto}
+  .game-toast-stack{right:10px;bottom:10px;width:calc(100vw - 20px)}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
